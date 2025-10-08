@@ -1,5 +1,5 @@
 use crate::utils;
-use anyhow::{Error, Result};
+use anyhow::Result;
 use secp256k1::{rand::rngs, PublicKey, SecretKey};
 use serde::{Deserialize, Serialize};
 use std::io::BufWriter;
@@ -26,11 +26,18 @@ pub fn public_key_address(public_key: &PublicKey) -> Address {
     Address::from_slice(&hash[12..])
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Account {
     pub secret_key: String,
     pub public_key: String,
     pub public_address: String,
+}
+
+impl std::fmt::Display for Account {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Account {{ public_key: {}, public_address: {} }}", 
+               self.public_key, self.public_address)
+    }
 }
 
 impl Account {

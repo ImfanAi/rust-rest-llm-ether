@@ -1,0 +1,13 @@
+# Ethereum Wallet Server Configuration
+
+[server]
+host = "0.0.0.0"
+port = 3000
+
+[ethereum]
+# Replace with your actual Infura or Alchemy endpoint
+rpc_url = "wss://mainnet.infura.io/ws/v3/YOUR_API_KEY"
+network_id = 1  # 1 = Mainnet, 3 = Ropsten, 4 = Rinkeby, 5 = Goerli
+
+[wallet]
+config_file = "account_config.json"
